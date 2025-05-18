@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All PDF Files</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #16213e;
+        }
+        .pdf-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .pdf-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .pdf-item:last-child {
+            border-bottom: none;
+        }
+        .pdf-title {
+            flex-grow: 1;
+        }
+        .pdf-category {
+            color: #666;
+            margin-right: 15px;
+            min-width: 100px;
+        }
+        .pdf-actions a {
+            text-decoration: none;
+            color: #16213e;
+            margin-left: 15px;
+        }
+        .pdf-actions a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #16213e;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .count-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Complete PDF Library</h1>
+    <div class="pdf-list">
+        <div class="count-info" id="pdfCount"></div>
+        <div id="allPdfsList"></div>
+    </div>
+    <a href="pdf.html" class="back-link">Back to PDF Gallery</a>
+
+    <!-- Include the PDF data file -->
+    <script src="pdf-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const pdfListContainer = document.getElementById('allPdfsList');
+            const pdfCountElement = document.getElementById('pdfCount');
+            
+            // Sort PDFs alphabetically by title
+            const sortedPdfs = [...pdfData].sort((a, b) => {
+                return a.title.localeCompare(b.title);
+            });
+            
+            // Display count information
+            pdfCountElement.textContent = `Total PDFs: ${sortedPdfs.length}`;
+            
+            // Create and append PDF items
+            sortedPdfs.forEach(pdf => {
+                const pdfItem = document.createElement('div');
+                pdfItem.className = 'pdf-item';
+                
+                const pdfTitle = document.createElement('div');
+                pdfTitle.className = 'pdf-title';
+                pdfTitle.textContent = pdf.title || 'Untitled PDF';
+                
+                const pdfCategory = document.createElement('div');
+                pdfCategory.className = 'pdf-category';
+                pdfCategory.textContent = pdf.category || 'Uncategorized';
+                
+                const pdfActions = document.createElement('div');
+                pdfActions.className = 'pdf-actions';
+                
+                // Preview link
+                const previewLink = document.createElement('a');
+                previewLink.href = pdf.path;
+                previewLink.target = '_blank';
+                previewLink.textContent = 'Preview';
+                
+                // Download link
+                const downloadLink = document.createElement('a');
+                downloadLink.href = pdf.path;
+                downloadLink.download = pdf.title || 'download.pdf';
+                downloadLink.textContent = 'Download';
+                
+                // Append elements
+                pdfActions.appendChild(previewLink);
+                pdfActions.appendChild(downloadLink);
+                pdfItem.appendChild(pdfTitle);
+                pdfItem.appendChild(pdfCategory);
+                pdfItem.appendChild(pdfActions);
+                pdfListContainer.appendChild(pdfItem);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+.mobile-app-section {
+    padding: 40px 0;
+}
+
+.app-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.app-description h3 {
+    color: #16213e;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.features-list {
+    margin: 30px 0;
+}
+
+.features-list h4 {
+    color: #16213e;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.features-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features-list li {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.features-list i {
+    color: #4cc9f0;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.notification-signup {
+    background: #f5f7fa;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.notification-signup h4 {
+    color: #16213e;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.notify-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.notify-form input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid #e1e5ea;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.notify-form input:focus {
+    border-color: #4cc9f0;
+    outline: none;
+}
+
+.notify-form button {
+    background-color: #4cc9f0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.notify-form button:hover {
+    background-color: #0f3460;
+    transform: translateY(-2px);
+}
+
+.app-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .app-info {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .app-preview {
+        order: -1;
+    }
+
+    .preview-image {
+        max-width: 80%;
+    }
+
+    .notify-form {
+        flex-direction: column;
+    }
+
+    .notify-form button {
+        width: 100%;
+    }
+}
